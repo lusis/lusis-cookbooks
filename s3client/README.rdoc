@@ -1,0 +1,33 @@
+= DESCRIPTION:
+
+Installs and configures support for s3-based file resources
+Based on work by Sonian in the awsclient cookbook
+
+= REQUIREMENTS:
+
+== Platform:
+
+Tested on CentOS5
+
+==Cookbooks:
+
+Requres Opscode's apt for Ubuntu support
+
+==Gems:
+aws-s3 (Amazon Official Gem)
+ 
+= ATTRIBUTES:
+
+
+= USAGE:
+(In another recipe)
+
+include_recipe "s3client"
+
+s3_file "/tmp/remote_s3_file.tar.bz2" do
+  bucket "my-badass-bucket"
+  object_name "/path/to/remote_s3_file.tar.bz2"
+  aws_access_key_id "accesskey"
+  aws_secret_access_key "secretkey"
+  mode "644"
+end
