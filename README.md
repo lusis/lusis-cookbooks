@@ -27,6 +27,24 @@ This is a hack of the awsclient cookbook provided by Sonian. The original Sonian
 I make NO claims about the viability of the technique used to provide the s3\_file resource. I simply followed the Sonian cookbook which appears to clobber the Chef namespace pretty heavily. I looked at converting it to be an LWRP but decided that the current way works cleanly enough for my needs.
 One thing I'd REALLY like to do is add checksum support via the ETAG MD5 sum provided by S3 however I didn't feel like clobbering the checksum method to use MD5 instead of SHA1 right now.
 
+## databag\_decrypt and decrypt\_test
+databag\_decrypt is a reference implementation of encrypted databag items. It requires a specific format for the databag item and supporting rake tasks in your chef-repo directory.
+
+decrypt\_test is an example cookbook with instructions to verify that it works
+
+### Notes
+The rake tasks are available here:
+
+https://gist.github.com/742575
+
+Make a directory in your repo called "tasks" if it doesn't exist and put the `encrypt_databag_item.rake` file in it.
+Add the following to the end of your rake file:
+
+	load File.join(TOPDIR, 'tasks','encrypt_databag_item.rake')
+
+Read the instructions in the decrypt\_test directory for more details.
+
+
 # License
 All of these cookbooks are licensed under the Apache License, version 2.0. Should any file be missing said license header, please feel free to assume the afore mentioned Apache License is applicable to those files.
 
