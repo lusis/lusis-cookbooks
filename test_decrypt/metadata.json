@@ -1,0 +1,32 @@
+{
+  "name": "test_decrypt",
+  "description": "Test the databag_decrypt recipe",
+  "long_description": "",
+  "maintainer": "John E. Vincent",
+  "maintainer_email": "lusis.org+github.com@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+    "databag_decrypt::default": [
+
+    ]
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.0.0"
+}

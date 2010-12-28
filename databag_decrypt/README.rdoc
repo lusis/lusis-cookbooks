@@ -1,0 +1,44 @@
+= DESCRIPTION:
+Provides a helper for decrypting databag items using the rake encrypt_databag task
+
+= REQUIREMENTS:
+encrypted_strings rubygem. Installed by default recipe
+
+= ATTRIBUTES: 
+
+= USAGE:
+This is a proof of concept for encrypting databag items. It relies on a custom rake task available here:
+
+	https://gist.github.com/742575
+
+The rake task looks for a databag called `passwords`. The items in the passwords databag are in the following format:
+
+	{"id":"somepassword", "data":"mysupersecretpassword"}
+
+Running `rake encrypt_databag[somepassword]` will do the following
+
+	* read data_bags/passwords/somepassword.json
+	* Encrypt the `data` value with the passphrase in the rake task file (default: I encrypt with this)
+	* Create a new file `data_bags/passwords/somepassword_crypted.json`
+	* Add the newly crypted item to the passwords databag
+
+To access the data in a recipe:
+
+	include_recipe "databag_decrypt"
+	crypted_password = search(:passwords, "id:somepassword").first
+
+	decrypted_password = item_decrypt(crypted_password[:data])
+	# do something with the decrypted password
+	# Maybe write it to a file somewhere?
+
+The data is encrypted with a symmetric algorithim so you'll need a password to decrypt it.
+You can define how to get the password via the following attributes:
+
+	node[:databag_decrypt][:passphrase_location]
+	node[:databag_decrypt][:passphrase_type]
+
+If `passphrase_type` is `filepath` then `passphrase_location` should be the path to a file containing the passphrase.
+If `passphrase_type` is `url` then `passphrase_location` should be a url that will return a single passphrase in text/plain format.
+
+Getting the file on the machine or putting it somewhere on the network to read is an exercise up to the user.
+
