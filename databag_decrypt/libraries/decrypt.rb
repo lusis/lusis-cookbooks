@@ -10,7 +10,7 @@ module Lusis
     def item_decrypt(item)
       pp = passphrase
       begin
-        data = item.to_s.decrypt(:symmetric, :password => pp)
+        data = item.to_s.decrypt(:symmetric, :algorithm => 'blowfish', :password => pp)
         data
       rescue OpenSSL::CipherError
         Chef::Log.error("Bad passphrase used for decryption")
