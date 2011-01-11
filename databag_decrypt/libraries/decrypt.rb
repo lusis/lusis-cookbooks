@@ -7,12 +7,13 @@ end
 
 module Lusis
   module DBIDecrypt
+    OpenSSLCipherError = OpenSSL::Cipher.const_defined?(:CipherError) ? OpenSSL::Cipher::CipherError : OpenSSL::CipherError
     def item_decrypt(item)
       pp = passphrase
       begin
         data = item.to_s.decrypt(:symmetric, :algorithm => 'blowfish', :password => pp)
         data
-      rescue OpenSSL::CipherError
+      rescue OpenSSLCipherError
         Chef::Log.error("Bad passphrase used for decryption")
       end
     end
