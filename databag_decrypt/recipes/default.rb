@@ -16,9 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-gem_package "encrypted_strings" do
-  action :install
+g = gem_package "encrypted_strings" do
+  action :nothing
 end
+g.run_action(:install)
+require 'rubygems'
+Gem.clear_paths
+require 'encrypted_strings'
 
 class Chef::Recipe
   include Lusis::DBIDecrypt
