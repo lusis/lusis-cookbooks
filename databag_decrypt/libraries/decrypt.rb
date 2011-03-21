@@ -32,9 +32,8 @@ module Lusis
         end
       when "url"
         begin
-          require 'net/http'
-          require 'uri'
-          passphrase = Net::HTTP.get_print URI.parse(node[:databag_decrypt][:passphrase_location])
+          require 'open-uri'
+          passphrase = open(node[:databag_decrypt][:passphrase_location]).read
           passphrase
         rescue
           Chef::Log.error("Unable to connect to passphrase url: #{node[:databag_decrypt][:passphrase_location]}")
