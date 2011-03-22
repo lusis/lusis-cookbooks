@@ -20,7 +20,7 @@ module Lusis
 
     private
     def passphrase
-    Chef::Log.info("Reading passphrase from #{node[:databag_decrypt][:passphrase_type]}: #{node[:databag_decrypt][:passphrase_location]}")
+    Chef::Log.debug("Reading passphrase from #{node[:databag_decrypt][:passphrase_type]}: #{node[:databag_decrypt][:passphrase_location]}")
       case node[:databag_decrypt][:passphrase_type]
       when "passfile"
         begin
