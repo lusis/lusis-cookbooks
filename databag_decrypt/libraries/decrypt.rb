@@ -34,7 +34,7 @@ module Lusis
         begin
           require 'open-uri'
           passphrase = open(node[:databag_decrypt][:passphrase_location]).read
-          passphrase
+          passphrase[-1] == "\n" ? passphrase.chop : passphrase
         rescue
           Chef::Log.error("Unable to connect to passphrase url: #{node[:databag_decrypt][:passphrase_location]}")
         end
