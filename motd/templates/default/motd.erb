@@ -1,0 +1,18 @@
+__________________________________________________
+| 
+| Node name: 		<%= node.name %>
+| Node arch: 		<%= node.kernel.machine %>
+<% if node.attribute?('ec2') %>
+| EC2 AMI: 		<%= node[:ec2][:ami_id] %>
+| EC2 Instance: 	<%= node[:ec2][:instance_id] %>
+| Size: 		<%= node[:ec2][:instance_type] %>
+| Public IP: 		<%= node[:ec2][:public_ipv4] %>
+| Private IP: 		<%= node[:ec2][:local_ipv4] %>
+| Zone: 		<%= node[:ec2][:placement_availability_zone] %>
+| Security Group: 	<%= node[:ec2][:security_groups].first %>
+<% end %>
+|
+|
+|
+__________________________________________________
+
