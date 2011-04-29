@@ -62,3 +62,14 @@ In the following log output you can see the result of running the cookbook in th
 [Fri, 29 Apr 2011 14:01:54 -0400] INFO: Report handlers complete
 [Fri, 29 Apr 2011 14:01:54 -0400] DEBUG: Exiting
 ```
+
+Why the hell do I need this?
+============================
+For this one example, coordination.
+
+Take a 'from scratch' environment where there are dependencies not just in your cookbooks but between nodes in your environment. Maybe you don't want to bring up an appserver that will just fail until the database master is online. By using Noah as an external coordinator, you can block arbitrary points of your runs until those dependencies are met.
+
+TODO
+====
+* Add support for creating/updating/deleting all Noah primitives.
+* Bunches o' stuff
