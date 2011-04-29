@@ -34,6 +34,7 @@ end
 ```
 
 In the following log output you can see the result of running the cookbook in the following scenario:
+
 * Noah is offline
 * Noah comes online but the data value is incorrect
 * Data value is now correct
