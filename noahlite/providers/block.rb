@@ -25,6 +25,7 @@ require 'json'
 action :wait_for do
   begin
     timeout(new_resource.timeout) do
+      Chef::Log.info("Watching #{new_resource.path}. Timeout in #{new_resource.timeout} seconds")
       wait_for_result
     end
   rescue Timeout::Error
@@ -55,11 +56,13 @@ def wait_for_result
   when "500"
     Chef::Application.fatal!("Noah server returned a fatal error (#{resp.code}): #{resp.body}")
   when "404"
-    Chef::Log.debug("Resource not found. Sleeping")
+    Chef::Log.debug("Got 404 from Noah server")
+    Chef::Log.info("Resource not found. Sleeping")
     sleep new_resource.retry_interval until get_result.code == "200"
     check_result(resp.body) if new_resource.data
     Chef::Log.debug("Resource ready. Continuing")
   when "200"
+    Chef::Log.info("Resource path found.")
     check_result(resp.body) if new_resource.data
     Chef::Log.debug("Resource ready. Continuing")
   else
@@ -69,11 +72,12 @@ end
 
 def check_result(data)
   if data != new_resource.data
+    Chef::Log.info("Resource found but data does not match. Sleeping")
     Chef::Log.debug("Data returned does not match expected. Retrying in #{new_resource.retry_interval}")
     sleep new_resource.retry_interval
     wait_for_result
   else
-    Chef::Log.debug("Resource ready. Continuing")
+    Chef::Log.info("Resource ready. Continuing")
   end
 end
 
