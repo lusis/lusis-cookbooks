@@ -1,6 +1,4 @@
-**I am currently in the process of migrating my cookbooks over to an organization so that they are easier for people to use with the `knife github` plugin. 
-
-You can find the repo [here](https://github.com/lusis-cookbooks). I'll update each cookbook with a pointer as soon as it's moved***
+**I am currently in the process of migrating my cookbooks over to an organization so that they are easier for people to use with the `knife github` plugin. You can find the repo [here](https://github.com/lusis-cookbooks). I'll update each cookbook with a pointer as soon as it's moved**
 
 # Lusis Cookbooks for Chef
 The following are various cookbooks created for [opscode chef](http://opscode.com).
