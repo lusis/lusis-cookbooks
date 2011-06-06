@@ -1,3 +1,6 @@
+**NOTICE**
+This cookbook is now deprecated. Theres is a full Noah cookbook available both on the opscode community site as well as [here](https://github.com/lusis-cookbooks/noah). Please don't use this cookbook anymore. Thanks!
+
 Description
 ===========
 This cookbook is a minimal version of the full Noah cookbook. It only provides resources and providers for using Noah in your cookbooks
