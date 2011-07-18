@@ -21,7 +21,7 @@ aws-s3 (Amazon Official Gem)
 
 = USAGE:
 (In another recipe)
-```ruby
+
 	include_recipe "s3client"
 	
 	s3_file "/tmp/remote_s3_file.tar.bz2" do
@@ -31,4 +31,3 @@ aws-s3 (Amazon Official Gem)
 	  aws_secret_access_key "secretkey"
 	  mode "644"
 	end
-```
